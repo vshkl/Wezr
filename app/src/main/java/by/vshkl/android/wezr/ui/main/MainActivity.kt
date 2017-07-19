@@ -1,18 +1,18 @@
 package by.vshkl.android.wezr.ui.main
 
 import android.os.Bundle
-import by.vshkl.android.wezr.ui.base.BaseActivity
 import by.vshkl.android.wezr.R
+import by.vshkl.android.wezr.ui.base.BaseActivity
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainView {
 
-    @Inject lateinit var mMainPresenter: MainPresenter
+    @Inject lateinit var mainPresenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityComponent().inject(this)
-        mMainPresenter.attachView(this)
+        mainPresenter.attachView(this)
     }
 
     override val layout: Int
@@ -20,7 +20,7 @@ class MainActivity : BaseActivity(), MainView {
 
     override fun onDestroy() {
         super.onDestroy()
-        mMainPresenter.detachView()
+        mainPresenter.detachView()
     }
 
     override fun showList() {

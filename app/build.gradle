@@ -71,6 +71,7 @@ dependencies {
     compile kotlin
     compile rxLibs
     compile supportLibs
+    compile constraintLayout
     compile networkLibs
     compile timber
     compile jsoup

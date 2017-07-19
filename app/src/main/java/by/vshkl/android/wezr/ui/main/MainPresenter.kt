@@ -9,10 +9,10 @@ import javax.inject.Inject
 class MainPresenter
 @Inject constructor(private val mDataManager: DataManager) : BasePresenter<MainView>() {
 
-    private var mMainView: MainView? = null
+    private var mainView: MainView? = null
 
     override fun attachView(mvpView: MainView) {
-        mMainView = mvpView
+        mainView = mvpView
     }
 
 }

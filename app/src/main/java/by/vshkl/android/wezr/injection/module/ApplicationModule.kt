@@ -10,17 +10,17 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class ApplicationModule(private val mApplication: Application) {
+class ApplicationModule(private val application: Application) {
 
     @Provides
     internal fun providesApplication(): Application {
-        return mApplication
+        return application
     }
 
     @Provides
     @ApplicationContext
     internal fun providesContext(): Context {
-        return mApplication
+        return application
     }
 
     @Provides

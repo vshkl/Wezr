@@ -15,29 +15,29 @@ import java.util.concurrent.atomic.AtomicLong
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    private var mActivityComponent: ActivityComponent? = null
-    private var mActivityId: Long = 0
+    private var activityComponent: ActivityComponent? = null
+    private var activityId: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout)
         ButterKnife.bind(this)
 
-        mActivityId = savedInstanceState?.getLong(KEY_ACTIVITY_ID) ?: NEXT_ID.getAndIncrement()
+        activityId = savedInstanceState?.getLong(KEY_ACTIVITY_ID) ?: NEXT_ID.getAndIncrement()
         val configPersistentComponent: ConfigPersistentComponent
-        if (sComponentsArray.get(mActivityId) == null) {
-            Timber.i("Creating new ConfigPersistentComponent $mActivityId")
+        if (sComponentsArray.get(activityId) == null) {
+            Timber.i("Creating new ConfigPersistentComponent $activityId")
             configPersistentComponent = DaggerConfigPersistentComponent.builder()
                     .applicationComponent(Application[this].component)
                     .build()
-            sComponentsArray.put(mActivityId, configPersistentComponent)
+            sComponentsArray.put(activityId, configPersistentComponent)
         } else {
-            Timber.i("Reusing ConfigPersistentComponent id=$mActivityId")
-            configPersistentComponent = sComponentsArray.get(mActivityId)
+            Timber.i("Reusing ConfigPersistentComponent id=$activityId")
+            configPersistentComponent = sComponentsArray.get(activityId)
         }
 
-        mActivityComponent = configPersistentComponent.activityComponent(ActivityModule(this))
-        mActivityComponent!!.inject(this)
+        activityComponent = configPersistentComponent.activityComponent(ActivityModule(this))
+        activityComponent!!.inject(this)
     }
 
     abstract val layout: Int
@@ -50,13 +50,13 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
-        outState?.putLong(KEY_ACTIVITY_ID, mActivityId)
+        outState?.putLong(KEY_ACTIVITY_ID, activityId)
     }
 
     override fun onDestroy() {
         if (isChangingConfigurations) {
-            Timber.i("Clearing ConfigPersistentComponent id=$mActivityId")
-            sComponentsArray.remove(mActivityId)
+            Timber.i("Clearing ConfigPersistentComponent id=$activityId")
+            sComponentsArray.remove(activityId)
         }
         super.onDestroy()
     }
@@ -72,7 +72,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun activityComponent(): ActivityComponent {
-        return mActivityComponent!!
+        return activityComponent!!
     }
 
 }

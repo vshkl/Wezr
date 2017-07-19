@@ -10,7 +10,7 @@ import timber.log.Timber
 
 class Application : Application() {
 
-    internal var mApplicationComponent: ApplicationComponent? = null
+    internal var applicationComponent: ApplicationComponent? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -23,15 +23,15 @@ class Application : Application() {
 
     var component: ApplicationComponent
         get() {
-            if (mApplicationComponent == null) {
-                mApplicationComponent = DaggerApplicationComponent.builder()
+            if (applicationComponent == null) {
+                applicationComponent = DaggerApplicationComponent.builder()
                         .applicationModule(ApplicationModule(this))
                         .build()
             }
-            return mApplicationComponent!!
+            return applicationComponent!!
         }
         set(applicationComponent) {
-            mApplicationComponent = applicationComponent
+            this.applicationComponent = applicationComponent
         }
 
     companion object {

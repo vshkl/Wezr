@@ -10,14 +10,14 @@ import javax.inject.Singleton
 class PreferencesHelper
 @Inject constructor(@ApplicationContext val context: Context) {
 
-    private val mPref: SharedPreferences
+    private val pref: SharedPreferences
 
     init {
-        mPref = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)
+        pref = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)
     }
 
     fun clear() {
-        mPref.edit().clear().apply()
+        pref.edit().clear().apply()
     }
 
     companion object {
