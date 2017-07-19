@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply from: "$rootProject.projectDir/config/config.gradle"
+apply from: "$rootProject.projectDir/config/library.gradle"
+apply plugin: 'jacoco'
+
+def configuration = ext.configuration;
+
+android {
+    compileSdkVersion configuration.compileSdk
+    buildToolsVersion configuration.buildTools
+
+    defaultConfig {
+        applicationId configuration.applicationId
+        minSdkVersion configuration.minimumSdk
+        targetSdkVersion configuration.targetSdk
+        versionCode buildVersionCode()
+        versionName buildVersionName()
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        textOutput "stdout"
+        textReport true
+        checkAllWarnings true
+        warningsAsErrors true
+        showAll true
+        explainIssues true
+        abortOnError false
+        lintConfig file("$projectDir/lint.xml")
+    }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/license/LICENSE.base64.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/rxjava.properties'
+    }
+
+    testOptions {
+        unitTests {
+            returnDefaultValues = true
+            all {
+                jacoco {
+                    includeNoLocationClasses = true
+                }
+            }
+        }
+    }
+
+}
+
+kapt {
+    generateStubs = true
+}
+
+dependencies {
+    compile dagger
+    kapt daggerCompiler
+    compile butterKnife
+    kapt butterKnifeCompiler
+    compile kotlin
+    compile rxLibs
+    compile supportLibs
+    compile networkLibs
+    compile timber
+    debugCompile leakCanary
+    kaptTest daggerCompiler
+    kaptAndroidTest daggerCompiler
+    testCompile unitTestLibs
+    androidTestCompile androidTestsLibs
+}
