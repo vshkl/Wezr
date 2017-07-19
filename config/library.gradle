@@ -15,7 +15,8 @@ ext {
             dagger        : '2.8',
             butterKnife   : '8.5.1',
             leakcanary    : "1.5.1",
-            timber        : "4.5.1"
+            timber        : "4.5.1",
+            jsoup         : "1.10.3"
     ]
 
     mockito = [mockito: "org.mockito:mockito-core:2.6.8"]
@@ -28,6 +29,8 @@ ext {
     butterKnifeCompiler = "com.jakewharton:butterknife-compiler:$versions.butterKnife"
     dagger = "com.google.dagger:dagger:$versions.dagger"
     daggerCompiler = "com.google.dagger:dagger-compiler:$versions.dagger"
+
+    jsoup = "org.jsoup:jsoup:$versions.jsoup"
 
     kotlinCompiler = [kotlin: "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"]
 
