@@ -1,6 +1,7 @@
 package by.vshkl.android.wezr.ui.forecast
 
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -47,6 +48,7 @@ class ForecastActivity : BaseActivity(), ForecastView {
     override fun showWeatherList(weatherList: List<Weather>) {
         rvWeatherList.setHasFixedSize(true)
         rvWeatherList.layoutManager = LinearLayoutManager(this)
+        rvWeatherList.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         rvWeatherList.adapter = ForecastAdapter(weatherList)
     }
 }

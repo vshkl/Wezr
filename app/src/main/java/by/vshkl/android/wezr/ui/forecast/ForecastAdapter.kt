@@ -18,8 +18,18 @@ class ForecastAdapter(private val weatherList: List<Weather>) : RecyclerView.Ada
 
         Glide.with(holder?.itemView?.context).load(weatherItem.imageUrl).into(holder?.ivWeatherIcon)
         holder?.tvForecastTime?.text = DateFormatterUtils.getReadableDateAndTime(weatherItem.time)
-        holder?.tvTemperatureLow?.text = weatherItem.tempLow.toString()
-        holder?.tvTemperatureHigh?.text = weatherItem.tempHigh.toString()
+        val temperatureLow = weatherItem.tempLow
+        if (temperatureLow > 0) {
+            holder?.tvTemperatureLow?.text = "+$temperatureLow°C"
+        } else {
+            holder?.tvTemperatureLow?.text = "-$temperatureLow°C"
+        }
+        val temperatureHigh = weatherItem.tempHigh
+        if (temperatureHigh > 0) {
+            holder?.tvTemperatureHigh?.text = "+$temperatureHigh°C"
+        } else {
+            holder?.tvTemperatureHigh?.text = "-$temperatureHigh°C"
+        }
         holder?.tvWeatherDescription?.text = weatherItem.weatherDescription
         holder?.tvWind?.text = weatherItem.wind
         holder?.tvPressure?.text = weatherItem.pressure
