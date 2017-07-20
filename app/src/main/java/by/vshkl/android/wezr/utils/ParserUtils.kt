@@ -1,7 +1,8 @@
-package by.vshkl.android.wezr.data.remote
+package by.vshkl.android.wezr.utils
 
 import by.vshkl.android.wezr.data.models.Weather
 import org.joda.time.DateTime
+import org.joda.time.DateTimeZone
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 
@@ -13,7 +14,7 @@ object ParserUtils {
 
     fun parseHtmlPage(htmlPage: String): List<Weather> {
         val weatherList: MutableList<Weather> = mutableListOf()
-        val startTime = DateTime().withTimeAtStartOfDay().plusHours(7)
+        val startTime = DateTime(DateTimeZone.forOffsetHours(3)).withMinuteOfHour(0)
         val weatherElements = Jsoup.parse(htmlPage).select("tr[onmouseover]")
 
         weatherElements.mapIndexedTo(weatherList) { index, weatherElement ->
@@ -33,8 +34,8 @@ object ParserUtils {
                 temperature[1].toInt(),
                 "$BASE_URL${weatherElement.child(2).select("img").attr("src")}",
                 weatherElement.child(3).text(),
-                "${wind[0]}$DIMENSION_WIND, ${wind[1]}",
-                "${weatherElement.child(5).text().split("[")[1].trimEnd(']')}$DIMENSION_PRESSURE",
+                "${wind[0]}${DIMENSION_WIND}, ${wind[1]}",
+                "${weatherElement.child(5).text().split("[")[1].trimEnd(']')}${DIMENSION_PRESSURE}",
                 "${weatherElement.child(6).text()}%"
         )
     }

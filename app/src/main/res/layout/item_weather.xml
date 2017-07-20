@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     >
 
     <ImageView
@@ -70,11 +70,9 @@
         android:id="@+id/tv_wind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="start"
         android:padding="8dp"
         android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@id/tv_pressure"
-        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_weather_description"
         tools:text="3-5 м/с, Ю-З"
@@ -87,9 +85,8 @@
         android:gravity="center"
         android:padding="8dp"
         android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@id/tv_humidity"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toEndOf="@id/tv_wind"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_weather_description"
         tools:text="728 мм.рт.ст."
         />
@@ -98,12 +95,10 @@
         android:id="@+id/tv_humidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="end"
         android:padding="8dp"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toEndOf="@id/tv_pressure"
         app:layout_constraintTop_toBottomOf="@id/tv_weather_description"
         tools:text="55%"
         />

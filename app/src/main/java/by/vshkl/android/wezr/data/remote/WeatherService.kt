@@ -1,6 +1,7 @@
 package by.vshkl.android.wezr.data.remote
 
 import by.vshkl.android.wezr.data.models.Weather
+import by.vshkl.android.wezr.utils.ParserUtils
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import okhttp3.Request

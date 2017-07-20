@@ -28,7 +28,10 @@ class ForecastPresenter
         disposable = dataManager.getWeatherData(cityCode)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { forecastView?.showWeatherList(it) }
+                .subscribe {
+                    forecastView?.showWeatherList(it)
+                    forecastView?.hideProgressIndicator()
+                }
     }
 
 }
