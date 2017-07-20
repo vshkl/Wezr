@@ -28,9 +28,7 @@ class MainPresenter
         disposable = dataManager.getWeatherData(cityCode)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    println(it)
-                }
+                .subscribe { mainView?.showWeatherList(it) }
     }
 
 }

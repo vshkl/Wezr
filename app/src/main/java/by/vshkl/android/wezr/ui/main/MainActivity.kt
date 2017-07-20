@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import butterknife.BindView
 import by.vshkl.android.wezr.R
+import by.vshkl.android.wezr.data.models.Weather
 import by.vshkl.android.wezr.ui.base.BaseActivity
 import javax.inject.Inject
 
@@ -27,7 +28,7 @@ class MainActivity : BaseActivity(), MainView {
         mainPresenter.detachView()
     }
 
-    override fun showList() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun showWeatherList(weatherList: List<Weather>) {
+
     }
 }
