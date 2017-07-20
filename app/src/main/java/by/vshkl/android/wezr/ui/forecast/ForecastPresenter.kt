@@ -1,4 +1,4 @@
-package by.vshkl.android.wezr.ui.main
+package by.vshkl.android.wezr.ui.forecast
 
 import by.vshkl.android.wezr.data.DataManager
 import by.vshkl.android.wezr.injection.ConfigPersistent
@@ -9,18 +9,18 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 @ConfigPersistent
-class MainPresenter
-@Inject constructor(private val dataManager: DataManager) : BasePresenter<MainView>() {
+class ForecastPresenter
+@Inject constructor(private val dataManager: DataManager) : BasePresenter<ForecastView>() {
 
-    private var mainView: MainView? = null
+    private var forecastView: ForecastView? = null
     private var disposable: Disposable? = null
 
-    override fun attachView(mvpView: MainView) {
-        mainView = mvpView
+    override fun attachView(mvpView: ForecastView) {
+        forecastView = mvpView
     }
 
     override fun detachView() {
-        mainView = null
+        forecastView = null
         disposable?.dispose()
     }
 
@@ -28,7 +28,7 @@ class MainPresenter
         disposable = dataManager.getWeatherData(cityCode)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { mainView?.showWeatherList(it) }
+                .subscribe { forecastView?.showWeatherList(it) }
     }
 
 }

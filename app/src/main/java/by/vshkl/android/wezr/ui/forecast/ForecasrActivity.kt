@@ -1,4 +1,4 @@
-package by.vshkl.android.wezr.ui.main
+package by.vshkl.android.wezr.ui.forecast
 
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
@@ -8,9 +8,9 @@ import by.vshkl.android.wezr.data.models.Weather
 import by.vshkl.android.wezr.ui.base.BaseActivity
 import javax.inject.Inject
 
-class MainActivity : BaseActivity(), MainView {
+class ForecasrActivity : BaseActivity(), ForecastView {
 
-    @Inject lateinit var mainPresenter: MainPresenter
+    @Inject lateinit var forecastPresenter: ForecastPresenter
 
     @BindView(R.id.rv_weather_list) lateinit var rvWeatherList: RecyclerView
 
@@ -19,13 +19,13 @@ class MainActivity : BaseActivity(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityComponent().inject(this)
-        mainPresenter.attachView(this)
-        mainPresenter.getWeatherData(26850)
+        forecastPresenter.attachView(this)
+        forecastPresenter.getWeatherData(26850)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mainPresenter.detachView()
+        forecastPresenter.detachView()
     }
 
     override fun showWeatherList(weatherList: List<Weather>) {

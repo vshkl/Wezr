@@ -53,4 +53,59 @@
         tools:text="12:00"
         />
 
+    <TextView
+        android:id="@+id/tv_weather_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_weather_icon"
+        tools:text="Переменная облачность. Сильный ливневый дождь. Гроза. Шквал до 18 м/с. H=90, M=30, L=10"
+        />
+
+    <TextView
+        android:id="@+id/tv_wind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@id/tv_pressure"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_weather_description"
+        tools:text="3-5 м/с, Ю-З"
+        />
+
+    <TextView
+        android:id="@+id/tv_pressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@id/tv_humidity"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toEndOf="@id/tv_wind"
+        app:layout_constraintTop_toBottomOf="@id/tv_weather_description"
+        tools:text="728 мм.рт.ст."
+        />
+
+    <TextView
+        android:id="@+id/tv_humidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toEndOf="@id/tv_pressure"
+        app:layout_constraintTop_toBottomOf="@id/tv_weather_description"
+        tools:text="55%"
+        />
+
 </android.support.constraint.ConstraintLayout>

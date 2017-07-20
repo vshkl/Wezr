@@ -18,7 +18,8 @@ ext {
             leakcanary      : "1.5.1",
             timber          : "4.5.1",
             jsoup           : "1.10.3",
-            joda            : "2.9.9"
+            joda            : "2.9.9",
+            glide           : "4.0.0-RC1"
     ]
 
     mockito = [mockito: "org.mockito:mockito-core:2.6.8"]
@@ -35,6 +36,8 @@ ext {
     jsoup = "org.jsoup:jsoup:$versions.jsoup"
 
     joda = "net.danlew:android.joda:$versions.joda"
+
+    glide = "com.github.bumptech.glide:glide:$versions.glide"
 
     constraintLayout = "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
 

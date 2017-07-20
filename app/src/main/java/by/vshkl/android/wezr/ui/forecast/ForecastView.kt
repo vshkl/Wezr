@@ -1,8 +1,8 @@
-package by.vshkl.android.wezr.ui.main
+package by.vshkl.android.wezr.ui.forecast
 
 import by.vshkl.android.wezr.data.models.Weather
 import by.vshkl.android.wezr.ui.base.MvpView
 
-interface MainView : MvpView {
+interface ForecastView : MvpView {
     fun showWeatherList(weatherList: List<Weather>)
 }
