@@ -72,6 +72,8 @@ dependencies {
     compile rxLibs
     compile supportLibs
     compile constraintLayout
+    compile roomLibs
+    kapt roomCompiler
     compile networkLibs
     compile timber
     compile jsoup

@@ -8,7 +8,7 @@ import android.widget.ProgressBar
 import butterknife.BindView
 import butterknife.ButterKnife
 import by.vshkl.android.wezr.R
-import by.vshkl.android.wezr.data.models.Weather
+import by.vshkl.android.wezr.data.model.Weather
 import by.vshkl.android.wezr.ui.base.BaseActivity
 import javax.inject.Inject
 

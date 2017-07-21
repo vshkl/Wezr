@@ -1,4 +1,4 @@
-package by.vshkl.android.wezr.data.models
+package by.vshkl.android.wezr.data.model
 
 import org.joda.time.DateTime
 
