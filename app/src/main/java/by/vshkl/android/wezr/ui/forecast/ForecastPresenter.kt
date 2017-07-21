@@ -7,7 +7,6 @@ import by.vshkl.android.wezr.ui.base.BasePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import net.danlew.android.joda.JodaTimeAndroid
 import javax.inject.Inject
 
 @ConfigPersistent
@@ -37,6 +36,10 @@ class ForecastPresenter
                         forecastView?.hideProgressIndicator()
                     }
                 }
+    }
+
+    fun showRadar() {
+        forecastView?.showRadar()
     }
 
     private fun fetchWeatherData(cityCode: Int) {

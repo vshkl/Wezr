@@ -16,6 +16,6 @@ class WeatherService @Inject constructor(private val client: OkHttpClient) {
     fun getWeatherData(cityCode: Int): Single<List<Weather>> = Single.create {
         val request = Request.Builder().url("$WEATHER_REQUEST_URL$cityCode").build()
         val response = client.newCall(request).execute()
-        it.onSuccess(ParserUtils.parseHtmlPage(response.body().string()))
+        it.onSuccess(ParserUtils.parseHtmlPage(response.body()?.string() ?: ""))
     }
 }

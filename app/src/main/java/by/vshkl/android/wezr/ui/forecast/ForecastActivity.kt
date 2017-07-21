@@ -7,14 +7,13 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
-import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
 import by.vshkl.android.wezr.R
 import by.vshkl.android.wezr.data.model.Weather
 import by.vshkl.android.wezr.ui.base.BaseActivity
+import by.vshkl.android.wezr.util.NavigationUtils
 import javax.inject.Inject
-
 
 class ForecastActivity : BaseActivity(), ForecastView {
 
@@ -46,12 +45,11 @@ class ForecastActivity : BaseActivity(), ForecastView {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.action_show_radar -> {
-                Toast.makeText(this, "Show radar", Toast.LENGTH_SHORT).show()
+                forecastPresenter.showRadar()
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
         }
-
     }
 
     override fun showProgressIndicator() {
@@ -68,5 +66,9 @@ class ForecastActivity : BaseActivity(), ForecastView {
         rvWeatherList.setHasFixedSize(true)
         rvWeatherList.layoutManager = LinearLayoutManager(this)
         rvWeatherList.adapter = ForecastAdapter(weatherList)
+    }
+
+    override fun showRadar() {
+        NavigationUtils.navigateToRadar(this)
     }
 }
