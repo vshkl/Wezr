@@ -9,6 +9,9 @@ import butterknife.ButterKnife
 import by.vshkl.android.wezr.R
 import by.vshkl.android.wezr.ui.base.BaseActivity
 import com.github.piasy.biv.view.BigImageView
+import com.r0adkll.slidr.Slidr
+import com.r0adkll.slidr.model.SlidrConfig
+import com.r0adkll.slidr.model.SlidrPosition
 import javax.inject.Inject
 
 class RadarActivity : BaseActivity(), RadarView {
@@ -23,6 +26,7 @@ class RadarActivity : BaseActivity(), RadarView {
         super.onCreate(savedInstanceState)
         ButterKnife.bind(this)
         activityComponent().inject(this)
+        initializeSlider()
         radarPresenter.attachView(this)
         radarPresenter.getRadarData()
     }
@@ -34,6 +38,17 @@ class RadarActivity : BaseActivity(), RadarView {
 
     override fun showRadarImage(radarImageUrl: String) {
         ivRadar.showImage(Uri.parse(radarImageUrl))
+    }
+
+    private fun initializeSlider() {
+        Slidr.attach(this, SlidrConfig.Builder()
+                .position(SlidrPosition.VERTICAL)
+                .sensitivity(0.1F)
+                .scrimStartAlpha(1F)
+                .scrimEndAlpha(0.1F)
+                .velocityThreshold(0.5F)
+                .distanceThreshold(0.25F)
+                .build())
     }
 
     companion object {
