@@ -1,6 +1,7 @@
 package by.vshkl.android.wezr.ui.forecast
 
 import by.vshkl.android.wezr.data.DataManager
+import by.vshkl.android.wezr.data.model.Weather
 import by.vshkl.android.wezr.injection.ConfigPersistent
 import by.vshkl.android.wezr.ui.base.BasePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -29,9 +30,16 @@ class ForecastPresenter
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
+                    storeWeatherData(it)
                     forecastView?.showWeatherList(it)
                     forecastView?.hideProgressIndicator()
                 }
+    }
+
+    private fun storeWeatherData(weatherList: List<Weather>) {
+        disposable = dataManager.storeWeatherData(weatherList)
+                .subscribeOn(Schedulers.io())
+                .subscribe()
     }
 
 }

@@ -10,11 +10,14 @@ import by.vshkl.android.wezr.data.entity.WeatherEntity
 interface WeatherDao {
 
     @Query("SELECT * FROM weather")
-    fun getWeatherEntities(): WeatherEntity
+    fun getAll(): List<WeatherEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertWeatherEntity(weatherEntity: WeatherEntity)
+    fun insert(weatherEntity: WeatherEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(weatherEntityList: List<WeatherEntity>)
 
     @Query("DELETE FROM weather")
-    fun deteteEntities()
+    fun deteteAll()
 }
