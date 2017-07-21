@@ -26,4 +26,6 @@ class DataManager
         Application.database.weatherDao().deleteAll()
         it.onSuccess(Application.database.weatherDao().insertAll(WeatherEntityMapper.transform(weatherList)))
     }
+
+    fun getRadarDara(): Single<String> = weatherService.getLatestRadarImage()
 }

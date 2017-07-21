@@ -10,4 +10,6 @@ interface ForecastView : MvpView {
     fun hideProgressIndicator()
 
     fun showWeatherList(weatherList: List<Weather>)
+
+    fun showRadar()
 }

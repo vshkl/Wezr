@@ -12,10 +12,17 @@ import javax.inject.Singleton
 class WeatherService @Inject constructor(private val client: OkHttpClient) {
 
     val WEATHER_REQUEST_URL = "http://meteoinfo.by/wrf15/?city="
+    val RADAR_REQUEST_URL = "http://meteoinfo.by/radar/?q=UMMN"
 
     fun getWeatherData(cityCode: Int): Single<List<Weather>> = Single.create {
         val request = Request.Builder().url("$WEATHER_REQUEST_URL$cityCode").build()
         val response = client.newCall(request).execute()
-        it.onSuccess(ParserUtils.parseHtmlPage(response.body().string()))
+        it.onSuccess(ParserUtils.parseForecastPage(response.body()?.string() ?: ""))
+    }
+
+    fun getLatestRadarImage(): Single<String> = Single.create {
+        val request = Request.Builder().url(RADAR_REQUEST_URL).build()
+        val response = client.newCall(request).execute()
+        it.onSuccess(ParserUtils.parseRadarPage(response.body()?.string() ?: ""))
     }
 }

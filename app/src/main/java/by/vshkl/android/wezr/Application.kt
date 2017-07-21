@@ -7,6 +7,8 @@ import by.vshkl.android.wezr.data.local.WeatherDatabase
 import by.vshkl.android.wezr.injection.component.ApplicationComponent
 import by.vshkl.android.wezr.injection.component.DaggerApplicationComponent
 import by.vshkl.android.wezr.injection.module.ApplicationModule
+import com.github.piasy.biv.BigImageViewer
+import com.github.piasy.biv.loader.glide.GlideImageLoader
 import com.squareup.leakcanary.LeakCanary
 import net.danlew.android.joda.JodaTimeAndroid
 import timber.log.Timber
@@ -18,6 +20,7 @@ class Application : Application() {
     override fun onCreate() {
         super.onCreate()
         JodaTimeAndroid.init(this)
+        BigImageViewer.initialize(GlideImageLoader.with(this))
         database = Room.databaseBuilder(this, WeatherDatabase::class.java, "weather_db").build()
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())

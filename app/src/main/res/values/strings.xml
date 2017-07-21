@@ -6,4 +6,8 @@
     <string name="weather_item_humidity">Влажность воздуха</string>
 
     <string name="template_temp_celsius">%1$d°</string>
+
+    <string name="menu_radar">Радар</string>
+
+    <string name="share_action_text">Отправить ссылку...</string>
 </resources>

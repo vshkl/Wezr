@@ -79,6 +79,8 @@ dependencies {
     compile jsoup
     compile joda
     compile glide
+    compile bigImageViewerLibs
+    compile slidableActivity
     debugCompile leakCanary
     kaptTest daggerCompiler
     kaptAndroidTest daggerCompiler
