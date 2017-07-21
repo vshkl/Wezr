@@ -75,6 +75,8 @@ dependencies {
     compile networkLibs
     compile timber
     compile jsoup
+    compile joda
+    compile glide
     debugCompile leakCanary
     kaptTest daggerCompiler
     kaptAndroidTest daggerCompiler

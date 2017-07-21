@@ -1,10 +1,10 @@
 ext.configuration = [
         applicationId: "by.vshkl.android.wezr",
         versionMajor: 0,
-        versionMinor: 0,
-        versionPatch: 1,
+        versionMinor: 1,
+        versionPatch: 0,
         versionClassifier: "",
-        minimumSdk: 14,
+        minimumSdk: 19,
         compileSdk: 25,
         targetSdk: 25,
         buildTools: "25.0.3"
