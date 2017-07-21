@@ -1,103 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="4dp"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="2dp"
     >
 
-    <ImageView
-        android:id="@+id/iv_weather_icon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription"
-        tools:src="@mipmap/ic_launcher"
-        />
-
-    <TextView
-        android:id="@+id/tv_temperature_high"
-        android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:gravity="center"
-        android:paddingStart="8dp"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="RtlSymmetry"
-        tools:text="20°C"
-        />
-
-    <TextView
-        android:id="@+id/tv_temperature_low"
-        android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:gravity="center"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@id/tv_temperature_high"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="18°C"
-        />
-
-    <TextView
-        android:id="@+id/tv_forecast_time"
-        android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@id/tv_temperature_low"
-        app:layout_constraintStart_toEndOf="@id/iv_weather_icon"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="12:00"
-        />
-
-    <TextView
-        android:id="@+id/tv_weather_description"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_weather_icon"
-        tools:text="Переменная облачность. Сильный ливневый дождь. Гроза. Шквал до 18 м/с. H=90, M=30, L=10"
-        />
+        android:padding="16dp"
+        >
 
-    <TextView
-        android:id="@+id/tv_wind"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_weather_description"
-        tools:text="3-5 м/с, Ю-З"
-        />
+        <ImageView
+            android:id="@+id/iv_weather_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
+            tools:src="@mipmap/ic_launcher"
+            />
 
-    <TextView
-        android:id="@+id/tv_pressure"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_weather_description"
-        tools:text="728 мм.рт.ст."
-        />
+        <TextView
+            android:id="@+id/tv_temperature_high"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:gravity="center|top"
+            android:paddingStart="8dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry"
+            tools:text="20°C"
+            />
 
-    <TextView
-        android:id="@+id/tv_humidity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_weather_description"
-        tools:text="55%"
-        />
+        <TextView
+            android:id="@+id/tv_temperature_low"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:gravity="center|top"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/tv_temperature_high"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="18°C"
+            />
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_forecast_time"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:gravity="center|top"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/tv_temperature_low"
+            app:layout_constraintStart_toEndOf="@id/iv_weather_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="12:00"
+            />
+
+        <TextView
+            android:id="@+id/tv_weather_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_weather_icon"
+            tools:text="Переменная облачность. Сильный ливневый дождь. Гроза. Шквал до 18 м/с. H=90, M=30, L=10"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/weather_item_wind"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_weather_description"
+            />
+
+        <TextView
+            android:id="@+id/tv_wind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_weather_description"
+            tools:text="3-5 м/с, Ю-З"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/weather_item_pressure"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_wind"
+            />
+
+        <TextView
+            android:id="@+id/tv_pressure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_wind"
+            tools:text="728 мм.рт.ст."
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/weather_item_humidity"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_pressure"
+            />
+
+        <TextView
+            android:id="@+id/tv_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_pressure"
+            tools:text="55%"
+            />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

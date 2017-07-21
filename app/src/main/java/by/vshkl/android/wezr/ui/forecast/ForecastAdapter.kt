@@ -14,26 +14,16 @@ class ForecastAdapter(private val weatherList: List<Weather>) : RecyclerView.Ada
             = ForecastViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.item_weather, parent, false))
 
     override fun onBindViewHolder(holder: ForecastViewHolder?, position: Int) {
-        val weatherItem = weatherList[position]
-
-        Glide.with(holder?.itemView?.context).load(weatherItem.imageUrl).into(holder?.ivWeatherIcon)
-        holder?.tvForecastTime?.text = DateFormatterUtils.getReadableDateAndTime(weatherItem.time)
-        val temperatureLow = weatherItem.tempLow
-        if (temperatureLow > 0) {
-            holder?.tvTemperatureLow?.text = "+$temperatureLow°C"
-        } else {
-            holder?.tvTemperatureLow?.text = "-$temperatureLow°C"
+        with(weatherList[position]) {
+            Glide.with(holder?.itemView?.context).load(imageUrl).into(holder?.ivWeatherIcon)
+            holder?.tvForecastTime?.text = DateFormatterUtils.getReadableDateAndTime(time)
+            holder?.tvTemperatureLow?.text = holder?.itemView?.context?.getString(R.string.template_temp_celsius, tempLow)
+            holder?.tvTemperatureHigh?.text = holder?.itemView?.context?.getString(R.string.template_temp_celsius, tempHigh)
+            holder?.tvWeatherDescription?.text = weatherDescription
+            holder?.tvWind?.text = wind
+            holder?.tvPressure?.text = pressure
+            holder?.tvHumidity?.text = humidity
         }
-        val temperatureHigh = weatherItem.tempHigh
-        if (temperatureHigh > 0) {
-            holder?.tvTemperatureHigh?.text = "+$temperatureHigh°C"
-        } else {
-            holder?.tvTemperatureHigh?.text = "-$temperatureHigh°C"
-        }
-        holder?.tvWeatherDescription?.text = weatherItem.weatherDescription
-        holder?.tvWind?.text = weatherItem.wind
-        holder?.tvPressure?.text = weatherItem.pressure
-        holder?.tvHumidity?.text = weatherItem.humidity
     }
 
     override fun getItemCount(): Int = weatherList.size
