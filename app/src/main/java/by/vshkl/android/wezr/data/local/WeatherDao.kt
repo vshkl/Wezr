@@ -19,5 +19,5 @@ interface WeatherDao {
     fun insertAll(weatherEntityList: List<WeatherEntity>)
 
     @Query("DELETE FROM weather")
-    fun deteteAll()
+    fun deleteAll()
 }

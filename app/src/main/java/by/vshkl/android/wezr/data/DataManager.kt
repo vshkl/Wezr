@@ -2,9 +2,10 @@ package by.vshkl.android.wezr.data
 
 import by.vshkl.android.wezr.Application
 import by.vshkl.android.wezr.data.mapper.WeatherEntityMapper
+import by.vshkl.android.wezr.data.mapper.WeatherMapper
 import by.vshkl.android.wezr.data.model.Weather
 import by.vshkl.android.wezr.data.remote.WeatherService
-import io.reactivex.Observable
+import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -12,11 +13,14 @@ import javax.inject.Singleton
 class DataManager
 @Inject constructor(private val weatherService: WeatherService) {
 
-    fun getWeatherData(cityCode: Int): Observable<List<Weather>> {
-        return weatherService.getWeatherData(cityCode)
+    fun getWeatherData(cityCode: Int): Single<List<Weather>> = weatherService.getWeatherData(cityCode)
+
+    fun getCachedWeatherData(): Single<List<Weather>> = Single.create {
+        it.onSuccess(WeatherMapper.transform(Application.database.weatherDao().getAll()).sortedBy { it.time })
     }
 
-    fun storeWeatherData(weatherList: List<Weather>): Observable<Void> = Observable.create {
-        Application.database?.weatherDao()?.insertAll(WeatherEntityMapper.transform(weatherList))
+    fun storeWeatherData(weatherList: List<Weather>): Single<Unit> = Single.create {
+        Application.database.weatherDao().deleteAll()
+        it.onSuccess(Application.database.weatherDao().insertAll(WeatherEntityMapper.transform(weatherList)))
     }
 }

@@ -8,6 +8,7 @@ import by.vshkl.android.wezr.injection.component.ApplicationComponent
 import by.vshkl.android.wezr.injection.component.DaggerApplicationComponent
 import by.vshkl.android.wezr.injection.module.ApplicationModule
 import com.squareup.leakcanary.LeakCanary
+import net.danlew.android.joda.JodaTimeAndroid
 import timber.log.Timber
 
 class Application : Application() {
@@ -16,6 +17,7 @@ class Application : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        JodaTimeAndroid.init(this)
         database = Room.databaseBuilder(this, WeatherDatabase::class.java, "weather_db").build()
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
@@ -42,7 +44,7 @@ class Application : Application() {
             return context.applicationContext as by.vshkl.android.wezr.Application
         }
 
-        var database: WeatherDatabase? = null
+        lateinit var database: WeatherDatabase
     }
 
 }

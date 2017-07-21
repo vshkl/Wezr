@@ -5,6 +5,7 @@ import org.joda.time.DateTime
 import org.joda.time.DateTimeZone
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
+import java.util.*
 
 object ParserUtils {
 
@@ -14,7 +15,7 @@ object ParserUtils {
 
     fun parseHtmlPage(htmlPage: String): List<Weather> {
         val weatherList: MutableList<Weather> = mutableListOf()
-        val startTime = DateTime(DateTimeZone.forOffsetHours(3)).withMinuteOfHour(0)
+        val startTime = DateTime(DateTimeZone.forTimeZone(TimeZone.getDefault())).withMinuteOfHour(0)
         val weatherElements = Jsoup.parse(htmlPage).select("tr[onmouseover]")
 
         weatherElements.mapIndexedTo(weatherList) { index, weatherElement ->
