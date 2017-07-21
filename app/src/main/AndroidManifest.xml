@@ -19,7 +19,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.radar.RadarActivity"/>
+        <activity
+            android:name=".ui.radar.RadarActivity"
+            android:theme="@style/AppTheme.NoActionBar.Translucent"/>
 
     </application>
 
