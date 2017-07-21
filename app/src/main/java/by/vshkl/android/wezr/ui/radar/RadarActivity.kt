@@ -2,6 +2,7 @@ package by.vshkl.android.wezr.ui.radar
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -23,11 +24,16 @@ class RadarActivity : BaseActivity(), RadarView {
         ButterKnife.bind(this)
         activityComponent().inject(this)
         radarPresenter.attachView(this)
+        radarPresenter.getRadarData()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         radarPresenter.detachView()
+    }
+
+    override fun showRadarImage(radarImageUrl: String) {
+        ivRadar.showImage(Uri.parse(radarImageUrl))
     }
 
     companion object {

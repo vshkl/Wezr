@@ -9,11 +9,12 @@ import java.util.*
 
 object ParserUtils {
 
-    val BASE_URL = "http://meteoinfo.by/wrf15/"
+    val FORECAST_BASE_URL = "http://meteoinfo.by/wrf15/"
+    val RADAR_BASE_URL = "http://meteoinfo.by/radar/"
     val DIMENSION_WIND = " м/c"
     val DIMENSION_PRESSURE = " мм рт.ст"
 
-    fun parseHtmlPage(htmlPage: String): List<Weather> {
+    fun parseForecastPage(htmlPage: String): List<Weather> {
         val weatherList: MutableList<Weather> = mutableListOf()
         val startTime = DateTime(DateTimeZone.forTimeZone(TimeZone.getDefault())).withMinuteOfHour(0)
         val weatherElements = Jsoup.parse(htmlPage).select("tr[onmouseover]")
@@ -25,7 +26,10 @@ object ParserUtils {
         return weatherList
     }
 
-    internal fun parseWeatherElement(weatherElement: Element, date: DateTime): Weather {
+    fun parseRadarPage(htmlPage: String): String
+            = "$RADAR_BASE_URL${Jsoup.parse(htmlPage).select("#rdr img").first().select("img").attr("src")}"
+
+    private fun parseWeatherElement(weatherElement: Element, date: DateTime): Weather {
         val temperature = weatherElement.child(1).text().split("..")
         var wind = weatherElement.child(4).text()
         if (wind.last().isDigit()) {
@@ -39,7 +43,7 @@ object ParserUtils {
                 date,
                 temperature[0].toInt(),
                 temperature[1].toInt(),
-                "$BASE_URL${weatherElement.child(2).select("img").attr("src")}",
+                "$FORECAST_BASE_URL${weatherElement.child(2).select("img").attr("src")}",
                 weatherElement.child(3).text(),
                 wind,
                 "${weatherElement.child(5).text().split("[")[1].trimEnd(']')}$DIMENSION_PRESSURE",

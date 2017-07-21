@@ -3,7 +3,9 @@ package by.vshkl.android.wezr.ui.radar
 import by.vshkl.android.wezr.data.DataManager
 import by.vshkl.android.wezr.injection.ConfigPersistent
 import by.vshkl.android.wezr.ui.base.BasePresenter
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 @ConfigPersistent
@@ -19,5 +21,14 @@ class RadarPresenter @Inject constructor(private val dataManager: DataManager) :
     override fun detachView() {
         radarView = null
         disposable?.dispose()
+    }
+
+    fun getRadarData() {
+        disposable = dataManager.getRadarDara()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { radarImageUrl ->
+                    radarView?.showRadarImage(radarImageUrl)
+                }
     }
 }
