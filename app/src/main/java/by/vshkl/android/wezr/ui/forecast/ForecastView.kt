@@ -1,6 +1,6 @@
 package by.vshkl.android.wezr.ui.forecast
 
-import by.vshkl.android.wezr.data.models.Weather
+import by.vshkl.android.wezr.data.model.Weather
 import by.vshkl.android.wezr.ui.base.MvpView
 
 interface ForecastView : MvpView {

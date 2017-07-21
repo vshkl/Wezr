@@ -1,4 +1,4 @@
-package by.vshkl.android.wezr.utils
+package by.vshkl.android.wezr.util
 
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat

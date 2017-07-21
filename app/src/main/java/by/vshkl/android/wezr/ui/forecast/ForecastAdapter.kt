@@ -4,8 +4,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import by.vshkl.android.wezr.R
-import by.vshkl.android.wezr.data.models.Weather
-import by.vshkl.android.wezr.utils.DateFormatterUtils
+import by.vshkl.android.wezr.data.model.Weather
+import by.vshkl.android.wezr.util.DateFormatterUtils
 import com.bumptech.glide.Glide
 
 class ForecastAdapter(private val weatherList: List<Weather>) : RecyclerView.Adapter<ForecastViewHolder>() {

@@ -1,6 +1,6 @@
 package by.vshkl.android.wezr.data
 
-import by.vshkl.android.wezr.data.models.Weather
+import by.vshkl.android.wezr.data.model.Weather
 import by.vshkl.android.wezr.data.remote.WeatherService
 import io.reactivex.Observable
 import javax.inject.Inject

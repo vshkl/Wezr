@@ -1,6 +1,6 @@
-package by.vshkl.android.wezr.utils
+package by.vshkl.android.wezr.util
 
-import by.vshkl.android.wezr.data.models.Weather
+import by.vshkl.android.wezr.data.model.Weather
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone
 import org.jsoup.Jsoup
