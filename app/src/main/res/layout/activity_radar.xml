@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.github.piasy.biv.view.BigImageView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/iv_radar"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:initScaleType="auto"
-    app:optimizeDisplay="false"
-    />
+    >
+
+    <com.github.piasy.biv.view.BigImageView
+        android:id="@+id/iv_radar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:initScaleType="auto"
+        app:optimizeDisplay="false"
+        />
+
+    <ImageView
+        android:id="@+id/iv_share"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="top|end"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="32dp"
+        android:padding="8dp"
+        app:srcCompat="@drawable/ic_share"
+        tools:ignore="ContentDescription"
+        />
+
+</FrameLayout>

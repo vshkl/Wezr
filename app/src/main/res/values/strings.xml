@@ -8,4 +8,6 @@
     <string name="template_temp_celsius">%1$d°</string>
 
     <string name="menu_radar">Радар</string>
+
+    <string name="share_action_text">Отправить ссылку...</string>
 </resources>

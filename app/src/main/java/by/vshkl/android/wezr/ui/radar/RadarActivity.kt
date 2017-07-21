@@ -6,8 +6,10 @@ import android.net.Uri
 import android.os.Bundle
 import butterknife.BindView
 import butterknife.ButterKnife
+import butterknife.OnClick
 import by.vshkl.android.wezr.R
 import by.vshkl.android.wezr.ui.base.BaseActivity
+import by.vshkl.android.wezr.util.NavigationUtils
 import com.github.piasy.biv.view.BigImageView
 import com.r0adkll.slidr.Slidr
 import com.r0adkll.slidr.model.SlidrConfig
@@ -38,6 +40,15 @@ class RadarActivity : BaseActivity(), RadarView {
 
     override fun showRadarImage(radarImageUrl: String) {
         ivRadar.showImage(Uri.parse(radarImageUrl))
+    }
+
+    override fun shareRadarImage(radarImageUrl: String) {
+        NavigationUtils.shareImageLink(this, radarImageUrl)
+    }
+
+    @OnClick(R.id.iv_share)
+    fun onShareClicked() {
+        radarPresenter.shareRadarImage()
     }
 
     private fun initializeSlider() {

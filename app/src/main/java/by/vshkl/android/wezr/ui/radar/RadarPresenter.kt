@@ -13,6 +13,7 @@ class RadarPresenter @Inject constructor(private val dataManager: DataManager) :
 
     private var radarView: RadarView? = null
     private var disposable: Disposable? = null
+    private var radarImageUrl: String? = null
 
     override fun attachView(mvpView: RadarView) {
         radarView = mvpView
@@ -28,7 +29,12 @@ class RadarPresenter @Inject constructor(private val dataManager: DataManager) :
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { radarImageUrl ->
+                    this.radarImageUrl = radarImageUrl
                     radarView?.showRadarImage(radarImageUrl)
                 }
+    }
+
+    fun shareRadarImage() {
+        radarView?.shareRadarImage(this.radarImageUrl ?: "")
     }
 }
