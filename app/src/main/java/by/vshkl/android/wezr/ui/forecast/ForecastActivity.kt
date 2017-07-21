@@ -3,14 +3,18 @@ package by.vshkl.android.wezr.ui.forecast
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
 import by.vshkl.android.wezr.R
 import by.vshkl.android.wezr.data.model.Weather
 import by.vshkl.android.wezr.ui.base.BaseActivity
 import javax.inject.Inject
+
 
 class ForecastActivity : BaseActivity(), ForecastView {
 
@@ -32,6 +36,22 @@ class ForecastActivity : BaseActivity(), ForecastView {
     override fun onDestroy() {
         super.onDestroy()
         forecastPresenter.detachView()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_forecast, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.action_show_radar -> {
+                Toast.makeText(this, "Show radar", Toast.LENGTH_SHORT).show()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+
     }
 
     override fun showProgressIndicator() {
