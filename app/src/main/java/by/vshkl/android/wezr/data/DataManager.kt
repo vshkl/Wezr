@@ -5,6 +5,7 @@ import by.vshkl.android.wezr.data.mapper.WeatherEntityMapper
 import by.vshkl.android.wezr.data.mapper.WeatherMapper
 import by.vshkl.android.wezr.data.model.Weather
 import by.vshkl.android.wezr.data.remote.WeatherService
+import by.vshkl.android.wezr.util.DateTImeUtils
 import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -16,7 +17,9 @@ class DataManager
     fun getWeatherData(cityCode: Int): Single<List<Weather>> = weatherService.getWeatherData(cityCode)
 
     fun getCachedWeatherData(): Single<List<Weather>> = Single.create {
-        it.onSuccess(WeatherMapper.transform(Application.database.weatherDao().getAll()).sortedBy { it.time })
+        it.onSuccess(WeatherMapper.transform(Application.database.weatherDao().getAll())
+                .sortedBy { it.time }
+                .filter { DateTImeUtils.isAfterCurrentHour(it.time) })
     }
 
     fun storeWeatherData(weatherList: List<Weather>): Single<Unit> = Single.create {

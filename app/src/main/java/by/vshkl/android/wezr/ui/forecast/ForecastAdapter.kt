@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import by.vshkl.android.wezr.R
 import by.vshkl.android.wezr.data.model.Weather
-import by.vshkl.android.wezr.util.DateFormatterUtils
+import by.vshkl.android.wezr.util.DateTImeUtils
 import com.bumptech.glide.Glide
 
 class ForecastAdapter(private val weatherList: List<Weather>) : RecyclerView.Adapter<ForecastViewHolder>() {
@@ -16,7 +16,7 @@ class ForecastAdapter(private val weatherList: List<Weather>) : RecyclerView.Ada
     override fun onBindViewHolder(holder: ForecastViewHolder?, position: Int) {
         with(weatherList[position]) {
             Glide.with(holder?.itemView?.context).load(imageUrl).into(holder?.ivWeatherIcon)
-            holder?.tvForecastTime?.text = DateFormatterUtils.getReadableDateAndTime(time)
+            holder?.tvForecastTime?.text = DateTImeUtils.getReadableDateAndTime(time)
             holder?.tvTemperatureLow?.text = holder?.itemView?.context?.getString(R.string.template_temp_celsius, tempLow)
             holder?.tvTemperatureHigh?.text = holder?.itemView?.context?.getString(R.string.template_temp_celsius, tempHigh)
             holder?.tvWeatherDescription?.text = weatherDescription
