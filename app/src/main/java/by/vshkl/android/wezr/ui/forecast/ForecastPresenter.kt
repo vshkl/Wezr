@@ -1,7 +1,6 @@
 package by.vshkl.android.wezr.ui.forecast
 
 import by.vshkl.android.wezr.data.DataManager
-import by.vshkl.android.wezr.data.model.AlertType
 import by.vshkl.android.wezr.data.model.Weather
 import by.vshkl.android.wezr.injection.ConfigPersistent
 import by.vshkl.android.wezr.ui.base.BasePresenter
@@ -28,12 +27,11 @@ class ForecastPresenter
         disposable?.dispose()
     }
 
-    fun getWeatherData(cityCode: Int) {
+    fun getCachedWeatherData() {
         disposable = dataManager.getCachedWeatherData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { weatherList ->
-                    fetchWeatherData(cityCode)
                     if (weatherList.isNotEmpty()) {
                         forecastView?.showWeatherList(weatherList)
                         forecastView?.hideProgressIndicator()
@@ -45,7 +43,7 @@ class ForecastPresenter
         if (networkUtils.isConnected()) {
             forecastView?.showRadar()
         } else {
-            forecastView?.showOfflineAlert(AlertType.RADAR)
+            forecastView?.showOfflineAlert()
         }
     }
 
@@ -60,7 +58,8 @@ class ForecastPresenter
                         forecastView?.hideProgressIndicator()
                     }
         } else {
-            forecastView?.showOfflineAlert(AlertType.WEATHER_FETCH)
+            forecastView?.hideProgressIndicator()
+            forecastView?.showOfflineAlert()
         }
     }
 
