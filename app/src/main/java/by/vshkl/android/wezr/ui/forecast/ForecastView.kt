@@ -1,5 +1,6 @@
 package by.vshkl.android.wezr.ui.forecast
 
+import by.vshkl.android.wezr.data.model.AlertType
 import by.vshkl.android.wezr.data.model.Weather
 import by.vshkl.android.wezr.ui.base.MvpView
 
@@ -12,4 +13,6 @@ interface ForecastView : MvpView {
     fun showWeatherList(weatherList: List<Weather>)
 
     fun showRadar()
+
+    fun showOfflineAlert(@AlertType alertType: Int)
 }

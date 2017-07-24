@@ -5,6 +5,7 @@ import android.content.Context
 import by.vshkl.android.wezr.data.DataManager
 import by.vshkl.android.wezr.injection.ApplicationContext
 import by.vshkl.android.wezr.injection.module.ApplicationModule
+import by.vshkl.android.wezr.util.NetworkUtils
 import dagger.Component
 import okhttp3.OkHttpClient
 import javax.inject.Singleton
@@ -16,4 +17,5 @@ interface ApplicationComponent {
     fun application(): Application
     fun dataManager(): DataManager
     fun okHttpClient(): OkHttpClient
+    fun networkUtils(): NetworkUtils
 }

@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import by.vshkl.android.wezr.data.remote.WeatherService
 import by.vshkl.android.wezr.injection.ApplicationContext
+import by.vshkl.android.wezr.util.NetworkUtils
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -32,6 +33,11 @@ class ApplicationModule(private val application: Application) {
     @Singleton
     internal fun providesWeatherService(okHttpClient: OkHttpClient): WeatherService {
         return WeatherService(okHttpClient)
+    }
+
+    @Provides
+    internal fun providesNetworkUtils(@ApplicationContext context: Context): NetworkUtils {
+        return NetworkUtils(context)
     }
 
 }

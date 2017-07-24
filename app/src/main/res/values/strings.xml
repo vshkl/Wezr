@@ -9,5 +9,8 @@
 
     <string name="menu_radar">Радар</string>
 
-    <string name="share_action_text">Отправить ссылку...</string>
+    <string name="share_action_text">Отправить ссылку…</string>
+
+    <string name="alert_offline_fetch_weather">Для обновления прогноза включите интернет и попробуйте ещё раз.</string>
+    <string name="alert_offline_radar">Для показа радара включите интернет и попробуйте ещё раз.</string>
 </resources>

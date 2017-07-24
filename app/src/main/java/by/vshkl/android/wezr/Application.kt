@@ -26,7 +26,6 @@ class Application : Application() {
             Timber.plant(Timber.DebugTree())
             LeakCanary.install(this)
         }
-
     }
 
     var component: ApplicationComponent

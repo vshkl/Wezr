@@ -1,15 +1,18 @@
 package by.vshkl.android.wezr.ui.forecast
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ProgressBar
 import butterknife.BindView
 import butterknife.ButterKnife
 import by.vshkl.android.wezr.R
+import by.vshkl.android.wezr.data.model.AlertType
 import by.vshkl.android.wezr.data.model.Weather
 import by.vshkl.android.wezr.ui.base.BaseActivity
 import by.vshkl.android.wezr.util.NavigationUtils
@@ -19,6 +22,7 @@ class ForecastActivity : BaseActivity(), ForecastView {
 
     @Inject lateinit var forecastPresenter: ForecastPresenter
 
+    @BindView(R.id.fl_root) lateinit var flRoot: FrameLayout
     @BindView(R.id.rv_weather_list) lateinit var rvWeatherList: RecyclerView
     @BindView(R.id.pb_progress) lateinit var pbProgressIndicator: ProgressBar
 
@@ -70,5 +74,14 @@ class ForecastActivity : BaseActivity(), ForecastView {
 
     override fun showRadar() {
         NavigationUtils.navigateToRadar(this)
+    }
+
+    override fun showOfflineAlert(@AlertType alertType: Int) {
+        when (alertType) {
+            AlertType.WEATHER_FETCH ->
+                Snackbar.make(flRoot, R.string.alert_offline_fetch_weather, Snackbar.LENGTH_SHORT).show()
+            AlertType.RADAR ->
+                Snackbar.make(flRoot, R.string.alert_offline_radar, Snackbar.LENGTH_SHORT).show()
+        }
     }
 }
