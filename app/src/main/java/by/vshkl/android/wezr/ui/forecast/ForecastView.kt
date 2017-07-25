@@ -12,4 +12,6 @@ interface ForecastView : MvpView {
     fun showWeatherList(weatherList: List<Weather>)
 
     fun showRadar()
+
+    fun showOfflineAlert()
 }

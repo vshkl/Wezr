@@ -9,5 +9,7 @@
 
     <string name="menu_radar">Радар</string>
 
-    <string name="share_action_text">Отправить ссылку...</string>
+    <string name="share_action_text">Отправить ссылку…</string>
+
+    <string name="alert_offline">Нет интернет соединения. Подключитесь к интернету и пробуйте ещё раз.</string>
 </resources>
