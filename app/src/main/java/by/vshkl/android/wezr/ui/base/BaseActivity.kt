@@ -5,15 +5,16 @@ import android.support.v4.util.LongSparseArray
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import butterknife.ButterKnife
+import by.vshkl.android.wezr.Application
 import by.vshkl.android.wezr.injection.component.ActivityComponent
 import by.vshkl.android.wezr.injection.component.ConfigPersistentComponent
-import by.vshkl.android.wezr.injection.module.ActivityModule
-import by.vshkl.android.wezr.Application
 import by.vshkl.android.wezr.injection.component.DaggerConfigPersistentComponent
-import timber.log.Timber
+import by.vshkl.android.wezr.injection.module.ActivityModule
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import java.util.concurrent.atomic.AtomicLong
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), AnkoLogger {
 
     private var activityComponent: ActivityComponent? = null
     private var activityId: Long = 0
@@ -26,13 +27,13 @@ abstract class BaseActivity : AppCompatActivity() {
         activityId = savedInstanceState?.getLong(KEY_ACTIVITY_ID) ?: NEXT_ID.getAndIncrement()
         val configPersistentComponent: ConfigPersistentComponent
         if (sComponentsArray.get(activityId) == null) {
-            Timber.i("Creating new ConfigPersistentComponent $activityId")
+            info("Creating new ConfigPersistentComponent $activityId")
             configPersistentComponent = DaggerConfigPersistentComponent.builder()
                     .applicationComponent(Application[this].component)
                     .build()
             sComponentsArray.put(activityId, configPersistentComponent)
         } else {
-            Timber.i("Reusing ConfigPersistentComponent id=$activityId")
+            info("Reusing ConfigPersistentComponent id=$activityId")
             configPersistentComponent = sComponentsArray.get(activityId)
         }
 
@@ -55,7 +56,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         if (isChangingConfigurations) {
-            Timber.i("Clearing ConfigPersistentComponent id=$activityId")
+            info("Clearing ConfigPersistentComponent id=$activityId")
             sComponentsArray.remove(activityId)
         }
         super.onDestroy()

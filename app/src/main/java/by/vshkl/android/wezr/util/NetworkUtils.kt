@@ -7,11 +7,8 @@ import javax.inject.Inject
 
 class NetworkUtils @Inject constructor(private val context: Context) {
 
-    fun getNetworkInfo(): NetworkInfo? {
-        return (context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).activeNetworkInfo
-    }
+    fun getNetworkInfo(): NetworkInfo?
+            = (context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).activeNetworkInfo
 
-    fun isConnected(): Boolean {
-        return getNetworkInfo()?.isConnected ?: false
-    }
+    fun isConnected(): Boolean = getNetworkInfo()?.isConnected ?: false
 }

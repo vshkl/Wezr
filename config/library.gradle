@@ -17,19 +17,18 @@ ext {
             dagger          : '2.8',
             butterKnife     : '8.5.1',
             leakcanary      : "1.5.1",
-            timber          : "4.5.1",
             jsoup           : "1.10.3",
             joda            : "2.9.9",
             glide           : "3.8.0",
             bigImageViewer  : "1.3.2",
-            slidableActiviy : "2.0.5"
+            slidableActiviy : "2.0.5",
+            anko            : "0.10.1"
     ]
 
     mockito = [mockito: "org.mockito:mockito-core:2.6.8"]
     junit = [junit: "junit:junit:4.12"]
 
     leakCanary = "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary"
-    timber = "com.jakewharton.timber:timber:$versions.timber"
 
     butterKnife = "com.jakewharton:butterknife:$versions.butterKnife"
     butterKnifeCompiler = "com.jakewharton:butterknife-compiler:$versions.butterKnife"
@@ -80,6 +79,10 @@ ext {
             gridLayout       : "com.android.support:gridlayout-v7:$versions.support"
     ]
 
+    ankoDeps = [
+            ankoCommon: "org.jetbrains.anko:anko-commons:$versions.anko"
+    ]
+
     unitTest = [
             harcrestCore        : "org.hamcrest:hamcrest-core:$versions.hamcrest",
             harmcrestLib        : "org.hamcrest:hamcrest-library:$versions.hamcrest",
@@ -102,6 +105,7 @@ ext {
     ] + mockito
 
     kotlin = kotlinCompiler.values()
+    ankoLibs = ankoDeps.values()
     networkLibs = retrofit.values()
     supportLibs = supportDeps.values()
     roomLibs = room.values()

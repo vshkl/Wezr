@@ -34,14 +34,4 @@ class ForecastPresenterTest {
     fun rearDown() {
         forecastPresenter.detachView()
     }
-
-//    @Test
-//    fun getCachedWeatherData() {
-//        val weatherList = MockModelFabric.newWeatherList(10)
-//        `when`(dataManager.getCachedWeatherData())
-//                .thenReturn(Single.just(weatherList))
-//
-//        forecastPresenter.getCachedWeatherData()
-//        verify(forecastView, never()).showWeatherList(ArgumentMatchers.anyList<Weather>())
-//    }
 }

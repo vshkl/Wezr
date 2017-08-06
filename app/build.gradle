@@ -79,13 +79,13 @@ dependencies {
     compile butterKnife
     kapt butterKnifeCompiler
     compile kotlin
+    compile ankoLibs
     compile rxLibs
     compile supportLibs
     compile constraintLayout
     compile roomLibs
     kapt roomCompiler
     compile networkLibs
-    compile timber
     compile jsoup
     compile joda
     compile glide
