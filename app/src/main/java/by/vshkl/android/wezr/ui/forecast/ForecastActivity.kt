@@ -5,7 +5,6 @@ import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
-import butterknife.ButterKnife
 import by.vshkl.android.wezr.R
 import by.vshkl.android.wezr.data.model.Weather
 import by.vshkl.android.wezr.ui.base.BaseActivity

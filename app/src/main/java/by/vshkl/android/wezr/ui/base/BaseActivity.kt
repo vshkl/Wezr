@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v4.util.LongSparseArray
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import butterknife.ButterKnife
 import by.vshkl.android.wezr.Application
 import by.vshkl.android.wezr.injection.component.ActivityComponent
 import by.vshkl.android.wezr.injection.component.ConfigPersistentComponent
@@ -22,7 +21,6 @@ abstract class BaseActivity : AppCompatActivity(), AnkoLogger {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout)
-        ButterKnife.bind(this)
 
         activityId = savedInstanceState?.getLong(KEY_ACTIVITY_ID) ?: NEXT_ID.getAndIncrement()
         val configPersistentComponent: ConfigPersistentComponent

@@ -52,8 +52,7 @@ class RadarActivity : BaseActivity(), RadarView, SlidrListener {
         NavigationUtils.shareImageLink(this, radarImageUrl)
     }
 
-    override fun onSlideClosed() {
-    }
+    override fun onSlideClosed() = Unit
 
     override fun onSlideStateChanged(state: Int) {
         if (state == ViewDragHelper.STATE_DRAGGING || state == ViewDragHelper.STATE_SETTLING) {
@@ -63,11 +62,9 @@ class RadarActivity : BaseActivity(), RadarView, SlidrListener {
         }
     }
 
-    override fun onSlideChange(percent: Float) {
-    }
+    override fun onSlideChange(percent: Float) = Unit
 
-    override fun onSlideOpened() {
-    }
+    override fun onSlideOpened() = Unit
 
     private fun initializeSlider() {
         Slidr.attach(this, SlidrConfig.Builder()
