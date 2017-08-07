@@ -1,12 +1,11 @@
 package by.vshkl.android.wezr.ui.radar
 
-import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.widget.ViewDragHelper
 import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
@@ -24,6 +23,7 @@ class RadarActivity : BaseActivity(), RadarView, SlidrListener {
 
     @Inject lateinit var radarPresenter: RadarPresenter
 
+    @BindView(R.id.pb_progress) lateinit var pbProgress: ProgressBar
     @BindView(R.id.iv_radar) lateinit var ivRadar: BigImageView
     @BindView(R.id.iv_share) lateinit var ivShare: ImageView
 
@@ -41,6 +41,16 @@ class RadarActivity : BaseActivity(), RadarView, SlidrListener {
     override fun onDestroy() {
         super.onDestroy()
         radarPresenter.detachView()
+    }
+
+    override fun showProgressIndicator() {
+        ivRadar.visibility = View.GONE
+        pbProgress.visibility = View.VISIBLE
+    }
+
+    override fun hideProgressIndicator() {
+        pbProgress.visibility = View.GONE
+        ivRadar.visibility = View.VISIBLE
     }
 
     override fun showRadarImage(radarImageUrl: String) {
@@ -83,9 +93,5 @@ class RadarActivity : BaseActivity(), RadarView, SlidrListener {
                 .distanceThreshold(0.25F)
                 .listener(this)
                 .build())
-    }
-
-    companion object {
-        fun newIntent(context: Context): Intent = Intent(context, RadarActivity::class.java)
     }
 }

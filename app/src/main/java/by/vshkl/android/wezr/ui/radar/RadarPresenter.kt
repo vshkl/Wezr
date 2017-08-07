@@ -31,6 +31,7 @@ class RadarPresenter @Inject constructor(private val dataManager: DataManager) :
                 .subscribe { radarImageUrl ->
                     this.radarImageUrl = radarImageUrl
                     radarView?.showRadarImage(radarImageUrl)
+                    radarView?.hideProgressIndicator()
                 }
     }
 
