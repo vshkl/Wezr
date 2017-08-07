@@ -11,5 +11,5 @@ object NavigationUtils {
     fun navigateToRadar(context: Context) = context.startActivity<RadarActivity>()
 
     fun shareImageLink(context: Context, imageLink: String)
-            = context.share(imageLink, context.getString(R.string.share_action_text))
+            = context.share(imageLink, context.getString(R.string.share_radar_subject))
 }

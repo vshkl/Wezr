@@ -80,7 +80,8 @@ ext {
     ]
 
     ankoDeps = [
-            ankoCommon: "org.jetbrains.anko:anko-commons:$versions.anko"
+            ankoCommon: "org.jetbrains.anko:anko-commons:$versions.anko",
+            ankoDesign: "org.jetbrains.anko:anko-design:$versions.anko"
     ]
 
     unitTest = [
