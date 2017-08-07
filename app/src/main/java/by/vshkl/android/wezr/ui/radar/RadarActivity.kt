@@ -4,38 +4,29 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v4.widget.ViewDragHelper
 import android.view.View
-import android.widget.ImageView
-import android.widget.ProgressBar
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.OnClick
 import by.vshkl.android.wezr.R
 import by.vshkl.android.wezr.ui.base.BaseActivity
 import by.vshkl.android.wezr.util.NavigationUtils
-import com.github.piasy.biv.view.BigImageView
 import com.r0adkll.slidr.Slidr
 import com.r0adkll.slidr.model.SlidrConfig
 import com.r0adkll.slidr.model.SlidrListener
 import com.r0adkll.slidr.model.SlidrPosition
+import kotlinx.android.synthetic.main.activity_radar.*
 import javax.inject.Inject
 
 class RadarActivity : BaseActivity(), RadarView, SlidrListener {
 
     @Inject lateinit var radarPresenter: RadarPresenter
 
-    @BindView(R.id.pb_progress) lateinit var pbProgress: ProgressBar
-    @BindView(R.id.iv_radar) lateinit var ivRadar: BigImageView
-    @BindView(R.id.iv_share) lateinit var ivShare: ImageView
-
     override val layout: Int get() = R.layout.activity_radar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ButterKnife.bind(this)
         activityComponent().inject(this)
         initializeSlider()
         radarPresenter.attachView(this)
         radarPresenter.getRadarData()
+        ivShare.setOnClickListener { radarPresenter.shareRadarImage() }
     }
 
     override fun onDestroy() {
@@ -59,11 +50,6 @@ class RadarActivity : BaseActivity(), RadarView, SlidrListener {
 
     override fun shareRadarImage(radarImageUrl: String) {
         NavigationUtils.shareImageLink(this, radarImageUrl)
-    }
-
-    @OnClick(R.id.iv_share)
-    fun onShareClicked() {
-        radarPresenter.shareRadarImage()
     }
 
     override fun onSlideClosed() {
