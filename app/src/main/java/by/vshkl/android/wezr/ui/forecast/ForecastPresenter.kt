@@ -1,6 +1,7 @@
 package by.vshkl.android.wezr.ui.forecast
 
 import by.vshkl.android.wezr.data.DataManager
+import by.vshkl.android.wezr.data.model.City
 import by.vshkl.android.wezr.data.model.Weather
 import by.vshkl.android.wezr.injection.ConfigPersistent
 import by.vshkl.android.wezr.ui.base.BasePresenter
@@ -20,11 +21,21 @@ class ForecastPresenter
 
     override fun attachView(mvpView: ForecastView) {
         forecastView = mvpView
+        getCities()
     }
 
     override fun detachView() {
         forecastView = null
         disposable?.dispose()
+    }
+
+    fun getCities() {
+        disposable = dataManager.getCities()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { cityList ->
+                    storeCities(cityList)
+                }
     }
 
     fun getCachedWeatherData() {
@@ -61,6 +72,12 @@ class ForecastPresenter
             forecastView?.hideProgressIndicator()
             forecastView?.showOfflineAlert()
         }
+    }
+
+    private fun storeCities(cityList: List<City>) {
+        disposable = dataManager.storeCityData(cityList)
+                .subscribeOn(Schedulers.io())
+                .subscribe()
     }
 
     private fun storeWeatherData(weatherList: List<Weather>) {

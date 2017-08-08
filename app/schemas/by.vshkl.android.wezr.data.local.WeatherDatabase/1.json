@@ -2,8 +2,32 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "27f3e2b11767b0edede60cb004afd1dd",
+    "identityHash": "abb7230fe60f76ef04365421d9763334",
     "entities": [
+      {
+        "tableName": "cities",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `city_name` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "city_name",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
       {
         "tableName": "weather",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`time` INTEGER, `temperature_low` INTEGER, `temperature_high` INTEGER, `image_url` TEXT, `weather_description` TEXT, `wind` TEXT, `pressure` TEXT, `humidity` TEXT, PRIMARY KEY(`time`))",
@@ -61,7 +85,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"27f3e2b11767b0edede60cb004afd1dd\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"abb7230fe60f76ef04365421d9763334\")"
     ]
   }
 }

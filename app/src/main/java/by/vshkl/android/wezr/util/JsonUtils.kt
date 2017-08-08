@@ -9,7 +9,7 @@ object JsonUtils {
         val jsonArray = JSONArray(jsonString)
 
         return (0..jsonArray.length() - 1).map {
-            City(jsonArray.getJSONObject(it).getInt("id"), jsonArray.getJSONObject(it).getString("name"))
+            City(jsonArray.getJSONObject(it).getInt("id"), jsonArray.getJSONObject(it).getString("city"))
         }
     }
 
