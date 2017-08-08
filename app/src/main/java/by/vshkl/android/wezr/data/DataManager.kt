@@ -2,6 +2,7 @@ package by.vshkl.android.wezr.data
 
 import by.vshkl.android.wezr.Application
 import by.vshkl.android.wezr.data.mapper.CityEntityMapper
+import by.vshkl.android.wezr.data.mapper.CityMapper
 import by.vshkl.android.wezr.data.mapper.WeatherEntityMapper
 import by.vshkl.android.wezr.data.mapper.WeatherMapper
 import by.vshkl.android.wezr.data.model.City
@@ -18,6 +19,10 @@ class DataManager
 @Inject constructor(private val weatherService: WeatherService) {
 
     fun getCities(): Single<List<City>> = weatherService.getCities()
+
+    fun getCachedCities(): Single<List<City>> = Single.create {
+        it.onSuccess(CityMapper.transform(Application.database.cityDao().getAll()))
+    }
 
     fun storeCityData(cityList: List<City>): Completable = Completable.create {
         Application.database.cityDao().deleteAll()

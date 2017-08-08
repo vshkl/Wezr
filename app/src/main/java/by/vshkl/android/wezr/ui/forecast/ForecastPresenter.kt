@@ -21,7 +21,6 @@ class ForecastPresenter
 
     override fun attachView(mvpView: ForecastView) {
         forecastView = mvpView
-        getCities()
     }
 
     override fun detachView() {
@@ -29,12 +28,17 @@ class ForecastPresenter
         disposable?.dispose()
     }
 
-    fun getCities() {
-        disposable = dataManager.getCities()
+    fun getCachedCities() {
+        disposable = dataManager.getCachedCities()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { cityList ->
-                    storeCities(cityList)
+                    if (cityList.isNotEmpty()) {
+                        //TODO: Show ui
+                        println(cityList)
+                    } else {
+                        getCities()
+                    }
                 }
     }
 
@@ -72,6 +76,16 @@ class ForecastPresenter
             forecastView?.hideProgressIndicator()
             forecastView?.showOfflineAlert()
         }
+    }
+
+    private fun getCities() {
+        disposable = dataManager.getCities()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { cityList ->
+                    //TODO: Show ui
+                    storeCities(cityList)
+                }
     }
 
     private fun storeCities(cityList: List<City>) {

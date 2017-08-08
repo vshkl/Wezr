@@ -27,6 +27,11 @@ class ForecastActivity : BaseActivity(), ForecastView, OnRefreshListener {
         forecastPresenter.getCachedWeatherData()
     }
 
+    override fun onStart() {
+        super.onStart()
+        forecastPresenter.getCachedCities()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         forecastPresenter.detachView()
