@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply from: "$rootProject.projectDir/config/config.gradle"
 apply from: "$rootProject.projectDir/config/library.gradle"
 apply plugin: 'jacoco'
@@ -17,12 +18,28 @@ android {
         versionCode buildVersionCode()
         versionName buildVersionName()
         vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        def commonTestDir = 'src/commonTest/java'
+        test {
+            java.srcDir commonTestDir
+        }
+        androidTest {
+            java.srcDir commonTestDir
         }
     }
 
@@ -56,7 +73,6 @@ android {
             }
         }
     }
-
 }
 
 kapt {
@@ -66,16 +82,13 @@ kapt {
 dependencies {
     compile dagger
     kapt daggerCompiler
-    compile butterKnife
-    kapt butterKnifeCompiler
     compile kotlin
+    compile ankoLibs
     compile rxLibs
     compile supportLibs
     compile constraintLayout
     compile roomLibs
     kapt roomCompiler
-    compile networkLibs
-    compile timber
     compile jsoup
     compile joda
     compile glide

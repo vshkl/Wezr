@@ -1,46 +1,47 @@
 package by.vshkl.android.wezr.ui.radar
 
-import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.widget.ViewDragHelper
 import android.view.View
-import android.widget.ImageView
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.OnClick
 import by.vshkl.android.wezr.R
 import by.vshkl.android.wezr.ui.base.BaseActivity
 import by.vshkl.android.wezr.util.NavigationUtils
-import com.github.piasy.biv.view.BigImageView
 import com.r0adkll.slidr.Slidr
 import com.r0adkll.slidr.model.SlidrConfig
 import com.r0adkll.slidr.model.SlidrListener
 import com.r0adkll.slidr.model.SlidrPosition
+import kotlinx.android.synthetic.main.activity_radar.*
 import javax.inject.Inject
 
 class RadarActivity : BaseActivity(), RadarView, SlidrListener {
 
     @Inject lateinit var radarPresenter: RadarPresenter
 
-    @BindView(R.id.iv_radar) lateinit var ivRadar: BigImageView
-    @BindView(R.id.iv_share) lateinit var ivShare: ImageView
-
     override val layout: Int get() = R.layout.activity_radar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ButterKnife.bind(this)
         activityComponent().inject(this)
         initializeSlider()
         radarPresenter.attachView(this)
         radarPresenter.getRadarData()
+        ivShare.setOnClickListener { radarPresenter.shareRadarImage() }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         radarPresenter.detachView()
+    }
+
+    override fun showProgressIndicator() {
+        ivRadar.visibility = View.GONE
+        pbProgress.visibility = View.VISIBLE
+    }
+
+    override fun hideProgressIndicator() {
+        pbProgress.visibility = View.GONE
+        ivRadar.visibility = View.VISIBLE
     }
 
     override fun showRadarImage(radarImageUrl: String) {
@@ -51,13 +52,7 @@ class RadarActivity : BaseActivity(), RadarView, SlidrListener {
         NavigationUtils.shareImageLink(this, radarImageUrl)
     }
 
-    @OnClick(R.id.iv_share)
-    fun onShareClicked() {
-        radarPresenter.shareRadarImage()
-    }
-
-    override fun onSlideClosed() {
-    }
+    override fun onSlideClosed() = Unit
 
     override fun onSlideStateChanged(state: Int) {
         if (state == ViewDragHelper.STATE_DRAGGING || state == ViewDragHelper.STATE_SETTLING) {
@@ -67,11 +62,9 @@ class RadarActivity : BaseActivity(), RadarView, SlidrListener {
         }
     }
 
-    override fun onSlideChange(percent: Float) {
-    }
+    override fun onSlideChange(percent: Float) = Unit
 
-    override fun onSlideOpened() {
-    }
+    override fun onSlideOpened() = Unit
 
     private fun initializeSlider() {
         Slidr.attach(this, SlidrConfig.Builder()
@@ -83,9 +76,5 @@ class RadarActivity : BaseActivity(), RadarView, SlidrListener {
                 .distanceThreshold(0.25F)
                 .listener(this)
                 .build())
-    }
-
-    companion object {
-        fun newIntent(context: Context): Intent = Intent(context, RadarActivity::class.java)
     }
 }
