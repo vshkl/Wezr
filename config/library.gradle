@@ -104,5 +104,4 @@ ext {
     unitTestLibs = unitTest.values()
     androidTestsLibs = androidTests.values() + supportLibs
     bigImageViewerLibs = bigImageViewer.values()
-
 }
