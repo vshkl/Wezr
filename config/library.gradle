@@ -30,8 +30,6 @@ ext {
 
     leakCanary = "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary"
 
-    butterKnife = "com.jakewharton:butterknife:$versions.butterKnife"
-    butterKnifeCompiler = "com.jakewharton:butterknife-compiler:$versions.butterKnife"
     dagger = "com.google.dagger:dagger:$versions.dagger"
     daggerCompiler = "com.google.dagger:dagger-compiler:$versions.dagger"
 
@@ -61,13 +59,6 @@ ext {
     rxJava = [
             rxkotlin : "io.reactivex.rxjava2:rxjava:$versions.rxkotlin",
             rxandroid: "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
-    ]
-
-    retrofit = [
-            retrofit     : "com.squareup.retrofit2:retrofit:$versions.retrofit",
-            rxadapter    : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
-            gsonConverter: "com.squareup.retrofit2:converter-gson:$versions.retrofit",
-            sqlbrite     : "com.squareup.sqlbrite:sqlbrite:1.1.1"
     ]
 
     supportDeps = [
@@ -107,7 +98,6 @@ ext {
 
     kotlin = kotlinCompiler.values()
     ankoLibs = ankoDeps.values()
-    networkLibs = retrofit.values()
     supportLibs = supportDeps.values()
     roomLibs = room.values()
     rxLibs = rxJava.values()
